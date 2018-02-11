@@ -1,0 +1,48 @@
+body{
+    text-align: center;
+    background: powderblue;
+}
+input{
+    border-bottom: 2px solid black;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    text-align: center;
+    margin: 20px;
+    font-size: 20pt;
+    color: grey;
+    background: powderblue;
+}
+button{
+    font-size: 12pt;
+    width: 150px;
+    border-radius: 15px;
+    margin: 15px;
+}
+button:hover{
+    font-size: 12pt;
+    background: plum;
+    border-radius: 15px;
+}
+h1{
+    font-family: 'Londrina Shadow', cursive;
+    word-spacing: .2em;
+    letter-spacing: .1em;
+    font-size: 35pt;
+}
+hr{
+    border: 1px solid grey;
+    margin-top: -15px;
+}
+#logo{
+    font-family: 'Londrina Shadow', cursive;
+    text-align: left;
+    margin-left: 8%;
+    word-spacing: .2em;
+    letter-spacing: .1em;
+    font-size: 30pt;
+}
+#logo-color{
+    font-family: 'Londrina Solid', cursive;
+    color: plum;
+}
