@@ -12,6 +12,10 @@ input{
     font-size: 20pt;
     color: grey;
     background: powderblue;
+    outline: none;
+}
+input:focus, input[type=text]:focus{
+    background: whitesmoke;
 }
 button{
     font-size: 12pt;
