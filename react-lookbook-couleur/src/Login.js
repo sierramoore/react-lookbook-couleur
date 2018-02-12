@@ -3,26 +3,21 @@ import './LoginRegister.css'
 
 
 class Login extends Component {
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
 
         this.state = {
-            username: '',
-            password: ''
+            username: this.props.username,
+            password: this.props.password
         }
     }
-    handleUsernameChange = (e) =>{
-        console.log(e.currentTarget.value);
-        this.setState({username: e.currentTarget.value})
-    };
-    handlePasswordChange = (e) =>{
-        console.log(e.currentTarget.value);
-        this.setState({password: e.currentTarget.value})
+    handleInputChange = (e) =>{
+        // console.log(e.currentTarget.value);
+        this.setState({[e.currentTarget.name]: e.currentTarget.value})
     };
     handleSubmit = (e) =>{
         e.preventDefault();
-        // this.props.getUsername(this.state.username);
-        // this.props.getPassword(this.state.password);
+
     };
 
 
@@ -32,8 +27,8 @@ class Login extends Component {
                 <h1>~ Log In ~</h1>
 
                 <form>
-                    <input placeholder="username" value={this.state.username} onChange={this.handleUsernameChange}/><br/>
-                    <input placeholder="password" value={this.state.password} onChange={this.handlePasswordChange}/><br/>
+                    <input placeholder="username" value={this.state.username} onChange={this.handleInputChange}/><br/>
+                    <input placeholder="password" value={this.state.password} onChange={this.handleInputChange}/><br/>
                     <button onClick={this.handleSubmit}>Log In</button>
                 </form>
                 <a href="./Register.js">Don't have an account? Sign Up</a>

@@ -17,9 +17,18 @@ input{
 }
 input:focus, input[type=text]:focus{
     background: whitesmoke;
+    color:black;
 }
 a{
     font-family: 'Marcellus', serif;
+}
+p{
+    font-family: 'Marcellus', serif;
+    width: 60%;
+    margin-left: 20%;
+    line-height: 60px;
+    font-size: 18pt;
+    padding-bottom: 10%;
 }
 button{
     font-size: 12pt;
@@ -39,10 +48,42 @@ h1{
     letter-spacing: .1em;
     font-size: 35pt;
 }
+h4{
+    font-family: 'Londrina Shadow', cursive;
+    word-spacing: .2em;
+    letter-spacing: .1em;
+    font-size: 55pt;
+}
+h2{
+    font-family: 'Londrina Shadow', cursive;
+    word-spacing: .2em;
+    letter-spacing: .1em;
+    text-align: left;
+    margin-left: 6%;
+    font-size: 30pt;
+}
+h3{
+    font-family: 'Londrina Sketch', cursive;
+    letter-spacing: .1em;
+    font-size: 25pt;
+    line-height: 10px;
+}
 hr{
     border: 1px solid grey;
     margin-top: -15px;
 }
+#colors div{
+    width: 33vw;
+    float: left;
+
+}
+#colors span{
+    border-radius: 50%;
+    margin: 3px;
+    font-size: 30pt;
+    color: transparent;
+}
+
 #logo{
     font-family: 'Londrina Shadow', cursive;
     text-align: left;
@@ -54,4 +95,9 @@ hr{
 #logo-color{
     font-family: 'Londrina Solid', cursive;
     color: plum;
+}
+footer{
+    position: fixed;
+    text-align: center;
+    margin: 150px 0 20px 0;
 }
