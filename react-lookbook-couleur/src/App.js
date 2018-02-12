@@ -13,24 +13,26 @@ class App extends Component {
         super();
 
         this.state = {
-
+            username: '',
+            password: ''
         }
     }
     getUsername = (username) =>{
-      console.log(username)
-        this.setState({username: username})
+        console.log(username);
+        this.setState({username: username});
     };
     getPassword = (password) =>{
-        console.log(password)
-        this.setState({password: password})
+        console.log(password);
+        this.setState({password: password});
     };
 
     render() {
         return (
             <div>
-                <link href="https://fonts.googleapis.com/css?family=Londrina+Outline|Londrina+Shadow|Londrina+Solid" rel="stylesheet"/>
+                <link href="https://fonts.googleapis.com/css?family=Londrina+Outline|Londrina+Shadow|Londrina+Solid|Marcellus" rel="stylesheet"/>
                 <h1 id="logo">L👀kBook <span id="logo-color">Couleur</span></h1><hr/>
-                {this.state.username === '' && this.state.password === '' ? <Register getUsername={this.getUsername} getPassword={this.getPassword}/> : <Login/> }
+                {/*{this.state.username === '' && this.state.password === '' ? <Register getUsername={this.getUsername} getPassword={this.getPassword}/> : <Login/> }*/}
+                <Register/>
                 <Profile/>
             </div>
         );

@@ -13,15 +13,20 @@ input{
     color: grey;
     background: powderblue;
     outline: none;
+    font-family: 'Marcellus', serif;
 }
 input:focus, input[type=text]:focus{
     background: whitesmoke;
+}
+a{
+    font-family: 'Marcellus', serif;
 }
 button{
     font-size: 12pt;
     width: 150px;
     border-radius: 15px;
     margin: 15px;
+    font-family: 'Marcellus', serif;
 }
 button:hover{
     font-size: 12pt;
