@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './LoginRegister.css'
+import request from 'superagent';
 
 
 class Register extends Component {
@@ -11,9 +12,24 @@ class Register extends Component {
             username: this.props.username,
             password: this.props.password,
             email: this.props.email,
-            colors: this.props.colors
+            colors: []
         }
     }
+
+    componentDidMount(){
+        request 
+            .get('http://localhost:9292/users/register')
+            .end((err, res) => {
+                if (err) console.log(err)
+                const parsedColors = JSON.parse(res.text)
+
+                const state = this.state
+                state.colors = parsedColors
+                console.log(state.colors)
+                this.setState(state)
+            })
+    }
+
     handleSubmit = (e) =>{
         e.preventDefault();
         this.props.createUser(this.state);
@@ -24,11 +40,25 @@ class Register extends Component {
 
     };
 
-// <h4>WELCOME</h4>
-// <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.</p>
-// <h1>~ Register ~</h1>
+
 
     render() {
+        // const paletteList = this.state.palettes.map((palette, i) => {
+
+        //     for(let i = 0; i < this.state.palettes.length; i++){
+        //             for(let j = 0; j < this.state.palettes.color.length; i++){
+        //                 const colorName = this.state.palettes.color[j].name
+        //                 const colorId = this.state.palettes.color[j].id
+        //             }
+
+
+        //     }
+        //     return <div key={i}>
+        //         <h3>{palette.name}</h3>
+
+        //     </div>
+        // })
+
 
         return (
             <div>
@@ -40,9 +70,9 @@ class Register extends Component {
                     <input name="password" value={this.state.password} placeholder="password" onChange={this.handleInput}/><br/>
                     <input name="email" value={this.state.email} placeholder="abc@mail.com" onChange={this.handleInput}/><br/>
                     <button onClick={this.handleSubmit}>Register</button>
-                </form>
+                
 
-                <h2>Color Palette: </h2>
+                <h2>Pick Your Palette: </h2>
                 <div id="colors" style={{float: 'left', marginLeft: '6%'}}>
                     <h3>Spring: Light</h3>
                     <span style={{background: '#5DADEC'}}>.  .  .</span>
@@ -61,6 +91,7 @@ class Register extends Component {
                     <span style={{background: '#4CBB17'}}>.  .  .</span>
                     <span style={{background: '#FF404C'}}>.  .  .</span>
                 </div>
+                </form>
 
             </div>
         );

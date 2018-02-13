@@ -6,6 +6,7 @@ import './Profile';
 import Register from "./Register";
 import Profile from "./Profile";
 import Login from "./Login";
+import request from 'superagent';
 
 
 class App extends Component {
@@ -20,6 +21,7 @@ class App extends Component {
             colors: []
         }
     }
+
     createUser = (formData) =>{
         console.log(formData);
         // request
@@ -33,14 +35,18 @@ class App extends Component {
 
     };
 
+
+    // <h4>WELCOME</h4>
+    //             <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.</p>
     render() {
         return (
             <div>
                 <link href="https://fonts.googleapis.com/css?family=Londrina+Outline|Londrina+Shadow|Londrina+Solid|Marcellus|Londrina+Sketch" rel="stylesheet"/>
 
                 <h1 id="logo">L👀kBook <span id="logo-color">Couleur</span></h1><hr/>
-                {this.state.username === '' && this.state.password === '' ? <Register getUsername={this.getUsername} getPassword={this.getPassword}/> : <Profile/> }
+                {this.state.username === '' && this.state.password === '' ? <Register/> : <Profile/> }
                 {/*<Register createUser={this.createUser}/>*/}
+                
 
             </div>
         );
