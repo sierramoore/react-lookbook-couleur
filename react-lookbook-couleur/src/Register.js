@@ -4,14 +4,15 @@ import request from 'superagent';
 
 
 class Register extends Component {
-    constructor(props){
-        super(props);
+    constructor(){
+        super();
+
         this.state = {
-            id: this.props.id,
-            name: this.props.name,
-            username: this.props.username,
-            password: this.props.password,
-            email: this.props.email,
+            id: '',
+            name: '',
+            username: '',
+            password: '',
+            email: '',
             colors: []
         }
     }
@@ -43,18 +44,12 @@ class Register extends Component {
 
 
     render() {
-        // const paletteList = this.state.palettes.map((palette, i) => {
+        // const colorList = this.state.colors.map((color, i) => {
 
-        //     for(let i = 0; i < this.state.palettes.length; i++){
-        //             for(let j = 0; j < this.state.palettes.color.length; i++){
-        //                 const colorName = this.state.palettes.color[j].name
-        //                 const colorId = this.state.palettes.color[j].id
-        //             }
+        //     console.log(color.id)
 
-
-        //     }
         //     return <div key={i}>
-        //         <h3>{palette.name}</h3>
+        //         <h3>{color.name}</h3>
 
         //     </div>
         // })
@@ -65,10 +60,10 @@ class Register extends Component {
                 <h1>~ Register ~</h1>
 
                 <form>
-                    <input name="name" value={this.state.name} placeholder="first and last name" onChange={this.handleInput}/><br/>
-                    <input name="username" value={this.state.username} placeholder="username" onChange={this.handleInput}/><br/>
-                    <input name="password" value={this.state.password} placeholder="password" onChange={this.handleInput}/><br/>
-                    <input name="email" value={this.state.email} placeholder="abc@mail.com" onChange={this.handleInput}/><br/>
+                    <input type="text" name="name" placeholder="first and last name" onChange={this.handleInput}/><br/>
+                    <input type="text" name="username" placeholder="username" onChange={this.handleInput}/><br/>
+                    <input type="password" name="password" placeholder="password" onChange={this.handleInput}/><br/>
+                    <input type="text" name="email" placeholder="abc@mail.com" onChange={this.handleInput}/><br/>
                     <button onClick={this.handleSubmit}>Register</button>
                 
 

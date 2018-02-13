@@ -24,14 +24,14 @@ class App extends Component {
 
     createUser = (formData) =>{
         console.log(formData);
-        // request
-        //     .post("http://localhost:3000/")
-        //     .send(formData)
-        //     .set('accept', 'json')
-        //     .end((err, createdUser) =>{
-        //         if(err) console.log(err);
-        //         console.log(createdUser);
-        //     })
+        request
+            .post("http://localhost:9292/users/newuser")
+            .send(formData)
+            .set('accept', 'json')
+            .end((err, createdUser) =>{
+                if(err) console.log(err);
+                console.log(createdUser);
+            })
 
     };
 
@@ -44,7 +44,7 @@ class App extends Component {
                 <link href="https://fonts.googleapis.com/css?family=Londrina+Outline|Londrina+Shadow|Londrina+Solid|Marcellus|Londrina+Sketch" rel="stylesheet"/>
 
                 <h1 id="logo">L👀kBook <span id="logo-color">Couleur</span></h1><hr/>
-                {this.state.username === '' && this.state.password === '' ? <Register/> : <Profile/> }
+                {this.state.username === '' && this.state.password === '' ? <Register createUser={this.createUser}/> : <Profile/> }
                 {/*<Register createUser={this.createUser}/>*/}
                 
 
