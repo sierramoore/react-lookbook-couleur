@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import request from 'superagent';
 import './App.css';
 import './Register';
 import './Login';
@@ -43,11 +44,9 @@ class App extends Component {
             <div>
                 <link href="https://fonts.googleapis.com/css?family=Londrina+Outline|Londrina+Shadow|Londrina+Solid|Marcellus|Londrina+Sketch" rel="stylesheet"/>
 
-                <h1 id="logo">L👀kBook <span id="logo-color">Couleur</span></h1><hr/>
-                {this.state.username === '' && this.state.password === '' ? <Register createUser={this.createUser}/> : <Profile/> }
-                {/*<Register createUser={this.createUser}/>*/}
-                
-
+                <h1 id="logo">L👀kBook <span id="logo-color">Couleur</span><a>Register</a><a>Login</a></h1><hr/>
+                {/*{this.state.username === '' && this.state.password === '' ? <Register getUsername={this.getUsername} getPassword={this.getPassword}/> : <Profile/> }*/}
+                <Register createUser={this.createUser}/>
             </div>
         );
     }

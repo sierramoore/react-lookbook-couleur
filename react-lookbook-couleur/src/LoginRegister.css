@@ -1,6 +1,9 @@
+
+
 body{
     text-align: center;
     background: powderblue;
+    margin-left: 6%;
 }
 input{
     border-bottom: 2px solid black;
@@ -21,6 +24,9 @@ input:focus, input[type=text]:focus{
 }
 a{
     font-family: 'Marcellus', serif;
+    font-size: 12pt;
+    margin: 12%;
+    text-decoration: underline;
 }
 p{
     font-family: 'Marcellus', serif;
@@ -47,19 +53,21 @@ h1{
     word-spacing: .2em;
     letter-spacing: .1em;
     font-size: 35pt;
+
 }
 h4{
-    font-family: 'Londrina Shadow', cursive;
+    font-family: 'Londrina Solid', cursive;
+    color: darkgreen;
     word-spacing: .2em;
     letter-spacing: .1em;
     font-size: 55pt;
 }
 h2{
-    font-family: 'Londrina Shadow', cursive;
+    font-family: 'Londrina Solid', cursive;
+    color: #404040;
     word-spacing: .2em;
     letter-spacing: .1em;
     text-align: left;
-    margin-left: 6%;
     font-size: 30pt;
 }
 h3{
@@ -67,27 +75,34 @@ h3{
     letter-spacing: .1em;
     font-size: 25pt;
     line-height: 10px;
+    text-align: left;
+
 }
 hr{
     border: 1px solid grey;
     margin-top: -15px;
+    margin-left: -6%;
 }
-#colors div{
-    width: 33vw;
+.colors div{
     float: left;
-
+    margin: 6%;
+    display: flex;
+    flex-wrap: nowrap;
 }
-#colors span{
+.colors span{
     border-radius: 50%;
-    margin: 3px;
     font-size: 30pt;
     color: transparent;
+    float: left;
+    padding: 10px;
+    display: flex;
+    flex-wrap: nowrap;
 }
 
 #logo{
     font-family: 'Londrina Shadow', cursive;
     text-align: left;
-    margin-left: 8%;
+    margin-left: 2%;
     word-spacing: .2em;
     letter-spacing: .1em;
     font-size: 30pt;
