@@ -41,7 +41,6 @@ class Register extends Component {
                     <input name="password" value={this.state.password} placeholder="password" onChange={this.handleInput}/><br/>
                     <input name="email" value={this.state.email} placeholder="abc@mail.com" onChange={this.handleInput}/><br/>
                     <button onClick={this.handleSubmit}>Register</button>
-                </form>
 
                 <h2>Color Palette: </h2>
                 <h3>Spring: Light</h3>
@@ -165,11 +164,7 @@ class Register extends Component {
                     <span style={{background: '#F2DAE3', marginBottom: 50}}>.  .  .</span>
                 </div>
 
-
-
-
-
-
+                </form>
 
             </div>
         );
