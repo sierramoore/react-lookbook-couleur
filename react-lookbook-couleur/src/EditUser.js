@@ -56,7 +56,7 @@ class Edit extends Component {
 	}
 
 	updatePassword = () => {
-
+		// THIS IS NOT FINISHED YET
 		const passwords = {
 			new_password: this.state.new_password,
 			old_password: this.state.old_password

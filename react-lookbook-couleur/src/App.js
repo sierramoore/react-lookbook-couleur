@@ -5,6 +5,7 @@ import Register from "./Register";
 import Profile from "./Profile";
 import Login from "./Login";
 import Edit from "./EditUser";
+import NewLook from "./NewLook";
 
 
 class App extends Component {
@@ -18,6 +19,7 @@ class App extends Component {
             show_login: false,
             show_profile: false,
             show_edit: false,
+            show_new_look: false,
             session_message: ''
         }
     }
@@ -120,8 +122,6 @@ class App extends Component {
          })
     }
 
-
-
    deleteUser = (userId) => {
     console.log(userId)
         request
@@ -129,9 +129,21 @@ class App extends Component {
             .end((err, res) => {
                 if(err) console.log(err)
                     console.log(res)
+                this.setState({
+                    show_reg: false,
+                    show_login: false,
+                    show_profile: false,
+                    show_edit: false
+                })
             })
    }
 
+   showNewLook = () => {
+    this.setState({
+        show_new_look: true,
+        show_profile: false
+    })
+   }
     
     render() {
         return (
@@ -140,10 +152,11 @@ class App extends Component {
                     <link href="https://fonts.googleapis.com/css?family=Londrina+Outline|Londrina+Shadow|Londrina+Solid|Marcellus|Londrina+Sketch" rel="stylesheet"/>
                         <a onClick={this.goHome}><h1 id="logo" style={{width: '50%', margin: '2%'}}>L👀kBook <span id="logo-color">Couleur</span></h1></a>
                         
-                        {this.state.show_profile || this.state.show_edit === true ?  
+                        {this.state.show_profile || this.state.show_edit || this.state.show_new_look === true ?  
                             <nav>
-                                <a>Search</a> 
-                                {this.state.show_edit === true ? <a onClick={this.backToProfile}>Back to Profile</a> : <a onClick={this.showEditor}>Edit Profile</a> }
+                                <a>Search</a>
+                                <a onClick={this.showNewLook}>Add New Look </a> 
+                                {this.state.show_edit || this.state.show_new_look === true ? <a onClick={this.backToProfile}>Back to Profile</a> : <a onClick={this.showEditor}>Edit Profile</a> }
                                 </nav> : 
                             <nav>
                                 <a onClick={this.showRegister}>Register</a>
@@ -152,14 +165,18 @@ class App extends Component {
                     
                 </header>
                 <main>
-                { this.state.show_reg || this.state.show_login || this.state.show_profile || this.state.show_edit === true ? null : <div>
+                { this.state.show_reg || this.state.show_login || this.state.show_profile || this.state.show_edit || this.state.show_new_look === true ? null : <div>
                     <h4>WELCOME</h4>
                     <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.</p>
                 </div>}
+
                 { this.state.show_reg === false ? null : <Register createUser={this.createUser} />}
                 { this.state.show_login === false ? null : <Login sessionMessage={this.state.session_message} loginUser={this.loginUser} showRegister={this.showRegister}/>}
                 { this.state.show_profile === false ? null : <Profile userId={this.state.id} paletteId ={this.state.palette_id}/>}
                 { this.state.show_edit === false ? null : <Edit userId={this.state.id} deleteUser={this.deleteUser} updateUser={this.updateUser}/>}
+
+                { this.state.show_new_look === false ? null : <NewLook />}
+
                 </main>
                 
             </div>
