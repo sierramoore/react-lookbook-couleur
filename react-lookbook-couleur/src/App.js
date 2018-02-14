@@ -7,7 +7,6 @@ import './Profile';
 import Register from "./Register";
 import Profile from "./Profile";
 import Login from "./Login";
-import request from 'superagent';
 
 
 class App extends Component {
@@ -15,38 +14,105 @@ class App extends Component {
         super();
 
         this.state = {
+            id: '',
             name: '',
             username: '',
-            password: '',
             email: '',
-            colors: []
+            palette_id: '',
+            show_reg: false,
+            show_login: false,
+            show_profile: false,
+            session_message: ''
         }
     }
 
-    createUser = (formData) =>{
-        console.log(formData);
+    goHome = () => {
+        this.setState({
+            show_reg: false,
+            show_login: false
+        })
+    }
+
+    showRegister = () => {
+        this.setState({ 
+            show_reg: true,
+            show_login: false })
+    }
+
+    createUser = (formData) => {
+        // console.log(formData);
         request
             .post("http://localhost:9292/users/newuser")
+            .type('form')
             .send(formData)
             .set('accept', 'json')
             .end((err, createdUser) =>{
                 if(err) console.log(err);
-                console.log(createdUser);
+                const parsedUser = JSON.parse(createdUser.text)
+                console.log(parsedUser);
+                this.setState({
+                    id: parsedUser.id,
+                    name: parsedUser.name,
+                    username: parsedUser.username,
+                    email: parsedUser.email,
+                    palette_id: parsedUser.palette_id,
+                    show_reg: false,
+                })
+
             })
+    }
 
-    };
+    loginUser = (foundUser) => {
+        request
+            .post("http://localhost:9292/users/login")
+            .send(foundUser)
+            .end((err, foundUser) => {
+                if (err) console.log(err)
+                console.log(foundUser.text)
+                const parsedUser = JSON.parse(foundUser.text)
+                this.setState({
+                    id: parsedUser.id,
+                    name: parsedUser.name,
+                    username: parsedUser.username,
+                    email: parsedUser.email,
+                    palette_id: parsedUser.palette_id,
+                    show_login: false,
+                    show_profile:true,
+                    session_message: parsedUser.confirmation 
+                })
+                console.log(this.state)
+            })
+    }
 
+    showLogin = () => {
+        this.setState({
+            show_reg: false, 
+            show_login: true })
+    }
 
-    // <h4>WELCOME</h4>
-    //             <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.</p>
+    
     render() {
         return (
             <div>
-                <link href="https://fonts.googleapis.com/css?family=Londrina+Outline|Londrina+Shadow|Londrina+Solid|Marcellus|Londrina+Sketch" rel="stylesheet"/>
+                <header>    
+                    <link href="https://fonts.googleapis.com/css?family=Londrina+Outline|Londrina+Shadow|Londrina+Solid|Marcellus|Londrina+Sketch" rel="stylesheet"/>
+                    <nav>
+                        <a onClick={this.goHome}><h1 id="logo">L👀kBook <span id="logo-color">Couleur</span></h1></a>
 
-                <h1 id="logo">L👀kBook <span id="logo-color">Couleur</span><a>Register</a><a>Login</a></h1><hr/>
-                {/*{this.state.username === '' && this.state.password === '' ? <Register getUsername={this.getUsername} getPassword={this.getPassword}/> : <Profile/> }*/}
-                <Register createUser={this.createUser}/>
+                        <a onClick={this.showRegister}>Register</a>
+                        <a onClick={this.showLogin}>Login</a>
+                    </nav>
+                </header>
+                <main>
+                { this.state.show_reg || this.state.show_login || this.state.show_profile === true ? null : <div>
+                    <h4>WELCOME</h4>
+                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.</p>
+                </div>}
+                { this.state.show_reg === false ? null : <Register createUser={this.createUser} />}
+                { this.state.show_login === false ? null : <Login loginUser={this.loginUser} showRegister={this.showRegister}/>}
+                { this.state.show_profile === false ? null : <Profile />}
+                </main>
+                
             </div>
         );
     }

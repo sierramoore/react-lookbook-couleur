@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import './LoginRegister.css'
-import request from 'superagent';
+import './LoginRegister.css';
+// import request from 'superagent';
 
 
 class Register extends Component {
@@ -8,58 +8,34 @@ class Register extends Component {
         super();
 
         this.state = {
-            id: '',
             name: '',
             username: '',
             password: '',
             email: '',
-            colors: []
+            palette_id: ''
         }
-    }
-
-    componentDidMount(){
-        request 
-            .get('http://localhost:9292/users/register')
-            .end((err, res) => {
-                if (err) console.log(err)
-                const parsedColors = JSON.parse(res.text)
-
-                const state = this.state
-                state.colors = parsedColors
-                console.log(state.colors)
-                this.setState(state)
-            })
     }
 
     handleSubmit = (e) =>{
         e.preventDefault();
         this.props.createUser(this.state);
     };
+
+    getPaletteId = (e) => {
+        console.log(e.currentTarget.id)
+        const paletteId = parseInt(e.currentTarget.id, 10)
+        this.setState({palette_id: paletteId})
+        console.log(this.state)
+    }
+
     handleInput = (e) =>{
         // console.log(e.currentTarget.value);
         this.setState({[e.currentTarget.name]: e.currentTarget.value})
-
     };
 
-
-
     render() {
-        // const colorList = this.state.colors.map((color, i) => {
-
-        //     console.log(color.id)
-
-        //     return <div key={i}>
-        //         <h3>{color.name}</h3>
-
-        //     </div>
-        // })
-
-
         return (
             <div>
-                <h4>WELCOME</h4>
-                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.</p>
-
                 <h1>~ Register ~</h1>
 
                 <form>
@@ -67,11 +43,11 @@ class Register extends Component {
                     <input type="text" name="username" placeholder="username" onChange={this.handleInput}/><br/>
                     <input type="password" name="password" placeholder="password" onChange={this.handleInput}/><br/>
                     <input type="text" name="email" placeholder="abc@mail.com" onChange={this.handleInput}/><br/>
-                    <button onClick={this.handleSubmit}>Register</button>
 
                 <h2>Pick Your Palette: </h2>
-                <h3>Spring: Light</h3>
-                <div className="colors">
+                
+                <div onClick={this.getPaletteId} id='1' className="colors">
+                    <h3 style={{marginRight: '70%'}}>Spring: Light</h3>
                     <span style={{background: '#5DADEC'}}>.  .  .</span>
                     <span style={{background: '#A8E4A0'}}>.  .  .</span>
                     <span style={{background: '#F78FA7'}}>.  .  .</span>
@@ -81,7 +57,7 @@ class Register extends Component {
                 </div>
 
 
-                <div className="colors">
+                <div onClick={this.getPaletteId} id='2' className="colors">
                     <h3 style={{marginRight: '70%'}}>Spring: Soft</h3>
                     <span style={{background: '#1B03A3'}}>.  .  .</span>
                     <span style={{background: '#FFDF00'}}>.  .  .</span>
@@ -91,7 +67,7 @@ class Register extends Component {
                     <span style={{background: '#FF404C', marginBottom: 50}}>.  .  .</span>
                 </div>
 
-                <div className="colors">
+                <div onClick={this.getPaletteId} id='3' className="colors">
                     <h3 style={{marginRight: '70%'}}>Spring: Warm</h3>
                     <span style={{background: '#CA7E65'}}>.  .  .</span>
                     <span style={{background: '#CA5B53'}}>.  .  .</span>
@@ -100,9 +76,8 @@ class Register extends Component {
                     <span style={{background: '#5A3927'}}>.  .  .</span>
                     <span style={{background: '#CB9343', marginBottom: 50}}>.  .  .</span>
                 </div>
-                </form>
 
-                <div className="colors">
+                <div onClick={this.getPaletteId} id='4'className="colors">
                     <h3 style={{marginRight: '70%'}}>Summer: Light</h3>
                     <span style={{background: '#A1E9F2'}}>.  .  .</span>
                     <span style={{background: '#8170D0'}}>.  .  .</span>
@@ -112,7 +87,7 @@ class Register extends Component {
                     <span style={{background: '#B6C5CD', marginBottom: 50}}>.  .  .</span>
                 </div>
 
-                <div className="colors">
+                <div onClick={this.getPaletteId} id='5'className="colors">
                     <h3 style={{marginRight: '70%'}}>Summer: Soft</h3>
                     <span style={{background: '#704E8B'}}>.  .  .</span>
                     <span style={{background: '#3F7B54'}}>.  .  .</span>
@@ -122,7 +97,7 @@ class Register extends Component {
                     <span style={{background: '#b96693', marginBottom: 50}}>.  .  .</span>
                 </div>
 
-                <div className="colors">
+                <div onClick={this.getPaletteId} id='6'className="colors">
                     <h3 style={{marginRight: '70%'}}>Summer: Cool</h3>
                     <span style={{background: '#5A3D6D'}}>.  .  .</span>
                     <span style={{background: '#65C4BB'}}>.  .  .</span>
@@ -132,7 +107,7 @@ class Register extends Component {
                     <span style={{background: '#929293', marginBottom: 50}}>.  .  .</span>
                 </div>
 
-                <div className="colors">
+                <div onClick={this.getPaletteId} id='7' className="colors">
                     <h3 style={{marginRight: '70%'}}>Autumn: Deep</h3>
                     <span style={{background: '#DB943F'}}>.  .  .</span>
                     <span style={{background: '#933F3B'}}>.  .  .</span>
@@ -142,7 +117,7 @@ class Register extends Component {
                     <span style={{background: '#56614A', marginBottom: 50}}>.  .  .</span>
                 </div>
 
-                <div className="colors">
+                <div onClick={this.getPaletteId} id='8'className="colors">
                     <h3 style={{marginRight: '70%'}}>Autumn: Soft</h3>
                     <span style={{background: '#76607F'}}>.  .  .</span>
                     <span style={{background: '#B07870'}}>.  .  .</span>
@@ -152,7 +127,7 @@ class Register extends Component {
                     <span style={{background: '#C9AC99', marginBottom: 50}}>.  .  .</span>
                 </div>
 
-                <div className="colors">
+                <div onClick={this.getPaletteId} id='9'className="colors">
                     <h3 style={{marginRight: '70%'}}>Autumn: Warm</h3>
                     <span style={{background: '#913221'}}>.  .  .</span>
                     <span style={{background: '#405925'}}>.  .  .</span>
@@ -162,7 +137,7 @@ class Register extends Component {
                     <span style={{background: '#603311', marginBottom: 50}}>.  .  .</span>
                 </div>
 
-                <div className="colors">
+                <div onClick={this.getPaletteId} id='10' className="colors">
                     <h3 style={{marginRight: '70%'}}>Winter: Deep</h3>
                     <span style={{background: '#452E5F'}}>.  .  .</span>
                     <span style={{background: '#9B427E'}}>.  .  .</span>
@@ -172,7 +147,7 @@ class Register extends Component {
                     <span style={{background: '#454D4E', marginBottom: 50}}>.  .  .</span>
                 </div>
 
-                <div className="colors">
+                <div onClick={this.getPaletteId} id='11'className="colors">
                     <h3 style={{marginRight: '70%'}}>Winter: Soft</h3>
                     <span style={{background: '#D7D3F2'}}>.  .  .</span>
                     <span style={{background: '#3071A4'}}>.  .  .</span>
@@ -182,7 +157,7 @@ class Register extends Component {
                     <span style={{background: '#002908', marginBottom: 50}}>.  .  .</span>
                 </div>
 
-                <div className="colors">
+                <div onClick={this.getPaletteId} id='12'className="colors">
                     <h3 style={{marginRight: '70%'}}>Winter: Cool</h3>
                     <span style={{background: '#22488F'}}>.  .  .</span>
                     <span style={{background: '#417EA3'}}>.  .  .</span>
@@ -191,6 +166,8 @@ class Register extends Component {
                     <span style={{background: '#5E3247'}}>.  .  .</span>
                     <span style={{background: '#F2DAE3', marginBottom: 50}}>.  .  .</span>
                 </div>
+
+                <button onClick={this.handleSubmit}>Register</button>
 
                 </form>
 
