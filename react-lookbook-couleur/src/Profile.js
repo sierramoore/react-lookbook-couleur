@@ -7,7 +7,7 @@ class Profile extends Component {
 		super(props)
 
 		this.state = {
-			id: '',
+			id: this.props.userId,
       name: '',
       username: '',
       email: '',
@@ -19,17 +19,16 @@ class Profile extends Component {
 	}
 
 	componentDidMount() {
-		const id = this.state.palette_id
+		const id = this.state.id
 		console.log(id)
 		request
 			.get("http://localhost:9292/users/" + id)
 			.end((err, res) => {
 				if (err) console.log(err)
-					console.log(res)
+					// console.log(res)
 				const parsedResponse = JSON.parse(res.text)
-				console.log(parsedResponse)
+				// console.log(parsedResponse)
 				this.setState({
-					id: parsedResponse.id,
 					name: parsedResponse.name,
 					username: parsedResponse.username,
 					email: parsedResponse.email,
@@ -47,7 +46,7 @@ class Profile extends Component {
     		</div>
     	})
 
-        return (
+        return (        	  
             <div>
             	<h1>Hi, {this.state.name}</h1>
             	<h2>You are a {this.state.palette_name}</h2>
@@ -55,6 +54,7 @@ class Profile extends Component {
             		{colorList}
             	</div>
             </div>
+
         );
     }
 }

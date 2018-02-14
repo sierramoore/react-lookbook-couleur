@@ -3,7 +3,7 @@
 body{
     text-align: center;
     background: powderblue;
-    margin-left: 6%;
+    /*margin-left: 6%;*/
 }
 input{
     border-bottom: 2px solid black;

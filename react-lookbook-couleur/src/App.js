@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import request from 'superagent';
 import './App.css';
-import './Register';
-import './Login';
-import './Profile';
 import Register from "./Register";
 import Profile from "./Profile";
 import Login from "./Login";
+import Edit from "./EditUser";
 
 
 class App extends Component {
@@ -14,10 +12,12 @@ class App extends Component {
         super();
 
         this.state = {
+            id: '',
             palette_id: '',
             show_reg: false,
             show_login: false,
             show_profile: false,
+            show_edit: false,
             session_message: ''
         }
     }
@@ -54,6 +54,12 @@ class App extends Component {
             })
     }
 
+    showLogin = () => {
+        this.setState({
+            show_reg: false, 
+            show_login: true })
+    }
+
     loginUser = (foundUser) => {
         request
             .post("http://localhost:9292/users/login")
@@ -64,6 +70,7 @@ class App extends Component {
                 console.log(parsedResponse)
                 if (parsedResponse.palette_id) {
                     this.setState({
+                        id: parsedResponse.id,
                         palette_id: parsedResponse.palette_id,
                         show_login: false,
                         show_profile:true 
@@ -81,11 +88,49 @@ class App extends Component {
             })
     }
 
-    showLogin = () => {
+    backToProfile = () => {
         this.setState({
-            show_reg: false, 
-            show_login: true })
+            show_profile: true,
+            show_edit: false
+        })
     }
+
+    showEditor = () => {
+      this.setState({
+        show_profile: false,
+        show_edit: true
+      })
+    }
+
+    updateUser = (updatedUser) => {
+        console.log(updatedUser)
+        const id = updatedUser.id
+        request
+         .put("http://localhost:9292/users/" + id)
+         .send(updatedUser)
+         .end((err, res) => {
+            if (err) console.log(err)
+                console.log(res)
+            const parsedResponse = JSON.parse(res.text)
+               // needs to update editor to be hidden
+               this.setState({
+                palette_id: parsedResponse.palette_id,
+                show_edit: false
+               })
+         })
+    }
+
+
+
+   deleteUser = (userId) => {
+    console.log(userId)
+        request
+            .delete("http://localhost:9292/users/" + userId)
+            .end((err, res) => {
+                if(err) console.log(err)
+                    console.log(res)
+            })
+   }
 
     
     render() {
@@ -93,21 +138,28 @@ class App extends Component {
             <div>
                 <header>    
                     <link href="https://fonts.googleapis.com/css?family=Londrina+Outline|Londrina+Shadow|Londrina+Solid|Marcellus|Londrina+Sketch" rel="stylesheet"/>
-                    <nav>
-                        <a onClick={this.goHome}><h1 id="logo">L👀kBook <span id="logo-color">Couleur</span></h1></a>
-
-                        <a onClick={this.showRegister}>Register</a>
-                        <a onClick={this.showLogin}>Login</a>
-                    </nav>
+                        <a onClick={this.goHome}><h1 id="logo" style={{width: '50%', margin: '2%'}}>L👀kBook <span id="logo-color">Couleur</span></h1></a>
+                        
+                        {this.state.show_profile || this.state.show_edit === true ?  
+                            <nav>
+                                <a>Search</a> 
+                                {this.state.show_edit === true ? <a onClick={this.backToProfile}>Back to Profile</a> : <a onClick={this.showEditor}>Edit Profile</a> }
+                                </nav> : 
+                            <nav>
+                                <a onClick={this.showRegister}>Register</a>
+                                <a onClick={this.showLogin}>Login</a>
+                            </nav>}   
+                    
                 </header>
                 <main>
-                { this.state.show_reg || this.state.show_login || this.state.show_profile === true ? null : <div>
+                { this.state.show_reg || this.state.show_login || this.state.show_profile || this.state.show_edit === true ? null : <div>
                     <h4>WELCOME</h4>
-                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.</p>
+                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.</p>
                 </div>}
                 { this.state.show_reg === false ? null : <Register createUser={this.createUser} />}
                 { this.state.show_login === false ? null : <Login sessionMessage={this.state.session_message} loginUser={this.loginUser} showRegister={this.showRegister}/>}
-                { this.state.show_profile === false ? null : <Profile paletteId={this.state.palette_id}/>}
+                { this.state.show_profile === false ? null : <Profile userId={this.state.id} paletteId ={this.state.palette_id}/>}
+                { this.state.show_edit === false ? null : <Edit userId={this.state.id} deleteUser={this.deleteUser} updateUser={this.updateUser}/>}
                 </main>
                 
             </div>
