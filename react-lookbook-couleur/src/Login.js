@@ -24,6 +24,7 @@ class Login extends Component {
     render() {
         return (
             <div>
+                <h1 id="logo">L👀kBook <span id="logo-color">Couleur</span><a>Register</a><a>Login</a></h1><hr/>
                 <h1>~ Log In ~</h1>
 
                 <form>
