@@ -14,10 +14,6 @@ class App extends Component {
         super();
 
         this.state = {
-            id: '',
-            name: '',
-            username: '',
-            email: '',
             palette_id: '',
             show_reg: false,
             show_login: false,
@@ -51,10 +47,6 @@ class App extends Component {
                 const parsedUser = JSON.parse(createdUser.text)
                 console.log(parsedUser);
                 this.setState({
-                    id: parsedUser.id,
-                    name: parsedUser.name,
-                    username: parsedUser.username,
-                    email: parsedUser.email,
                     palette_id: parsedUser.palette_id,
                     show_reg: false,
                 })
@@ -66,21 +58,26 @@ class App extends Component {
         request
             .post("http://localhost:9292/users/login")
             .send(foundUser)
-            .end((err, foundUser) => {
+            .end((err, res) => {
                 if (err) console.log(err)
-                console.log(foundUser.text)
-                const parsedUser = JSON.parse(foundUser.text)
-                this.setState({
-                    id: parsedUser.id,
-                    name: parsedUser.name,
-                    username: parsedUser.username,
-                    email: parsedUser.email,
-                    palette_id: parsedUser.palette_id,
-                    show_login: false,
-                    show_profile:true,
-                    session_message: parsedUser.confirmation 
-                })
-                console.log(this.state)
+                const parsedResponse = JSON.parse(res.text)
+                console.log(parsedResponse)
+                if (parsedResponse.palette_id) {
+                    this.setState({
+                        palette_id: parsedResponse.palette_id,
+                        show_login: false,
+                        show_profile:true 
+                    })
+                    console.log(this.state)
+                }   else {
+                    // console.log(parsedResponse)
+                    this.setState({
+                        session_message: parsedResponse.confirmation
+                    })
+                    console.log(this.state)
+                }
+
+                
             })
     }
 
@@ -109,8 +106,8 @@ class App extends Component {
                 <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.</p>
                 </div>}
                 { this.state.show_reg === false ? null : <Register createUser={this.createUser} />}
-                { this.state.show_login === false ? null : <Login loginUser={this.loginUser} showRegister={this.showRegister}/>}
-                { this.state.show_profile === false ? null : <Profile />}
+                { this.state.show_login === false ? null : <Login sessionMessage={this.state.session_message} loginUser={this.loginUser} showRegister={this.showRegister}/>}
+                { this.state.show_profile === false ? null : <Profile paletteId={this.state.palette_id}/>}
                 </main>
                 
             </div>

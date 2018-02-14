@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './LoginRegister.css';
-// import request from 'superagent';
 
 
 class Register extends Component {
