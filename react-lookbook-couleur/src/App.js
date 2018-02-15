@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import request from 'superagent';
-import './App.css';
+import './LoginRegister.css';
 import Register from "./Register";
 import Profile from "./Profile";
 import Login from "./Login";
@@ -151,15 +151,16 @@ class App extends Component {
             <div>
                 <header>    
                     <link href="https://fonts.googleapis.com/css?family=Londrina+Outline|Londrina+Shadow|Londrina+Solid|Marcellus|Londrina+Sketch" rel="stylesheet"/>
-                        <a onClick={this.goHome}><h1 id="logo" style={{width: '50%', margin: '2%'}}>L👀kBook <span id="logo-color">Couleur</span></h1></a>
-                        
+
                         {this.state.show_profile || this.state.show_edit || this.state.show_new_look === true ?  
-                            <nav>
+                            <nav className="heading">
+                               <h1 onClick={this.goHome} id="logo" style={{width: '35%'}}>L👀kBook <span id="logo-color">Couleur</span></h1><hr/>
                                 <a>Search</a>
                                 <a onClick={this.showNewLook}>Add New Look </a> 
                                 {this.state.show_edit || this.state.show_new_look === true ? <a onClick={this.backToProfile}>Back to Profile</a> : <a onClick={this.showEditor}>Edit Profile</a> }
                                 </nav> : 
-                            <nav>
+                            <nav className="heading">
+                                <a onClick={this.goHome}><h1 id="logo" style={{width: '35%'}}>L👀kBook <span id="logo-color">Couleur</span></h1></a><hr/>
                                 <a onClick={this.showRegister}>Register</a>
                                 <a onClick={this.showLogin}>Login</a>
                             </nav>}   

@@ -28,6 +28,12 @@ a{
     margin: 12%;
     text-decoration: underline;
 }
+.heading a{
+    text-decoration: none;
+}
+.heading a:hover{
+    color: plum;
+}
 p{
     font-family: 'Marcellus', serif;
     width: 60%;
@@ -53,7 +59,7 @@ h1{
     word-spacing: .2em;
     letter-spacing: .1em;
     font-size: 35pt;
-
+    text-align: center !important;
 }
 h4{
     font-family: 'Londrina Solid', cursive;
@@ -84,7 +90,7 @@ h3:hover {
 }
 hr{
     border: 1px solid grey;
-    margin-top: -15px;
+    margin-top: -45px;
     margin-left: -6%;
 }
 .colors div{
@@ -106,14 +112,16 @@ hr{
 #logo{
     font-family: 'Londrina Shadow', cursive;
     text-align: left;
-    margin-left: 2%;
+    /*margin-left: 2%;*/
     word-spacing: .2em;
     letter-spacing: .1em;
     font-size: 30pt;
+    text-decoration: transparent;
 }
 #logo-color{
     font-family: 'Londrina Solid', cursive;
     color: plum;
+    font-size: 30pt;
 }
 footer{
     position: fixed;
