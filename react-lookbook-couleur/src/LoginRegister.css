@@ -78,6 +78,10 @@ h3{
     text-align: left;
 
 }
+
+h3:hover {
+  color: green;
+}
 hr{
     border: 1px solid grey;
     margin-top: -15px;
