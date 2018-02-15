@@ -9,6 +9,8 @@ body{
 nav {
     display: flex;
     justify-content: space-between;
+    background-color: whitesmoke;
+    padding: 2%;
 }
 
 input{
@@ -30,9 +32,11 @@ input:focus, input[type=text]:focus{
 }
 a{
     font-family: 'Marcellus', serif;
-    font-size: 12pt;
+    font-size: 14pt;
     margin: auto;
-    text-decoration: underline;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
 }
 p{
     font-family: 'Marcellus', serif;
@@ -41,6 +45,9 @@ p{
     line-height: 60px;
     font-size: 18pt;
     padding-bottom: 10%;
+}
+img {
+    height: 100px;
 }
 button{
     font-size: 12pt;
@@ -53,6 +60,7 @@ button:hover{
     font-size: 12pt;
     background: plum;
     border-radius: 15px;
+    cursor: pointer;
 }
 h1{
     font-family: 'Londrina Shadow', cursive;
@@ -109,17 +117,30 @@ hr{
     flex-wrap: nowrap;
 }
 
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0;
+}
+
+#greeting {
+    text-align: center;
+}
+
 #logo{
     font-family: 'Londrina Shadow', cursive;
     text-align: left;
     margin-left: 2%;
     word-spacing: .2em;
     letter-spacing: .1em;
-    font-size: 30pt;
+    font-size: 50px;
 }
 #logo-color{
     font-family: 'Londrina Solid', cursive;
     color: plum;
+    font-size: 50px;
 }
 footer{
     position: fixed;

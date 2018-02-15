@@ -168,7 +168,8 @@ class App extends Component {
    showNewLook = () => {
     this.setState({
         show_new_look: true,
-        show_profile: false
+        show_profile: false, 
+        show_edit: false
     })
    }
 

@@ -10,14 +10,15 @@ class NewLook extends Component {
 			array_of_links: [],
 			link: '',
 			image_link: '',
-			color: '',
+			color_id: '',
 			tags: []
 		}
 	}
 
 	scrapeImages = (e) => {
 		e.preventDefault()
-		const link = {link: e.currentTarget.previousSibling.value}
+		const linkObj = {link: e.currentTarget.previousSibling.value}
+		const link = e.currentTarget.previousSibling.value
 
 		// console.log(link, typeof link, "----------------------------")
 
@@ -26,7 +27,7 @@ class NewLook extends Component {
 		// then responsed with the array of images
 		request
 			.post("http://localhost:9000/")
-			.send(link)
+			.send(linkObj)
 			.end((err, res) => {
 				if (err) console.log(err)
 					// this should be the array of images
@@ -34,15 +35,24 @@ class NewLook extends Component {
 					const parsedLinks = JSON.parse(res.text)
 
 					this.setState({
-						link: e.currentTarget.previousSibling.value,
+						link: link,
 						array_of_links: parsedLinks
 					})
 			})
 	}
 
+	getImageLink = (e) => {
+		console.log(typeof e.currentTarget.src)
+		const imgLink = e.currentTarget.src
+		console.log(imgLink)
+		this.setState({
+			image_link: imgLink
+		})
+	}
+
 	handleInput = (e) => {
 		// console.log(e.currentTarget.name)
-		// console.log(e.currentTarget.value)
+		console.log(e.currentTarget.value)
 		this.setState({[e.currentTarget.name]: e.currentTarget.value})
 		console.log(this.state)
 	}
@@ -50,17 +60,28 @@ class NewLook extends Component {
 	handleSubmit = (e) => {
 		e.preventDefault();
     // console.log(this.state)
-    this.props.createLook(this.state)
+
+    const colorId = parseInt(this.state.color_id, 10)
+    console.log(this.state.color_id)
+    console.log(colorId)
+    const objToSend = {
+			link: this.state.link,
+			image_link: this.state.image_link,
+			color_id: colorId,
+			tags: this.state.tags
+    }
+    console.log(objToSend)
+    this.props.createLook(objToSend)
 	}
  
 	render() {
 		
 		const imageOptions = this.state.array_of_links.map((imgLink, i) => {
-			console.log(imgLink)
-			return <img key={i} name="image_link" src="imgLink" onClick={this.handleInput}/>})
+			// console.log(imgLink)
+			return <img key={i} name="image_link" src={imgLink} onClick={this.getImageLink}/>})
 		
 		const colorOptions = this.state.user_colors.map((color, i) => {
-			return <option key={i}>{color.color_name}</option>
+			return <option key={i} value={color.id}>{color.color_name}</option>
 		})
 			
 
@@ -77,13 +98,15 @@ class NewLook extends Component {
 				{ this.state.link === '' ? null : 
 				<form>
 					Choose color:
-						<select name="color" onChange={this.handleInput}>
+						<select name="color_id" onChange={this.handleInput}>
 							{colorOptions}
 						</select>
+					<br/>	
 					Add tags (please separate by commas):
 						<input type="text" name="tags" placeholder="ex. #littleblackdress" onChange={this.handleInput}/>
+					<br/>	
 					Pick image:
-						<div>
+						<div className="container">
 						{imageOptions}
 						</div>
 					<button onClick={this.handleSubmit}>Create Look</button>	
