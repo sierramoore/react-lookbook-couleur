@@ -1,33 +1,38 @@
 import React, { Component } from 'react';
-import './LoginRegister.css'
+import './LoginRegister.css';
 
 
 class Register extends Component {
-    constructor(props){
-        super(props);
+    constructor(){
+        super();
+
         this.state = {
-            id: this.props.id,
-            name: this.props.name,
-            username: this.props.username,
-            password: this.props.password,
-            email: this.props.email,
-            colors: this.props.colors
+            name: '',
+            username: '',
+            password: '',
+            email: '',
+            palette_id: ''
         }
     }
+
     handleSubmit = (e) =>{
         e.preventDefault();
         this.props.createUser(this.state);
     };
+
+    getPaletteId = (e) => {
+        console.log(e.currentTarget.id);
+        const paletteId = parseInt(e.currentTarget.id, 10);
+        this.setState({palette_id: paletteId});
+        console.log(this.state)
+    };
+
     handleInput = (e) =>{
         // console.log(e.currentTarget.value);
         this.setState({[e.currentTarget.name]: e.currentTarget.value})
-
     };
 
-
-
     render() {
-
         return (
             <div>
                 <h1 id="logo">L👀kBook <span id="logo-color">Couleur</span><a>Register</a><a>Login</a></h1><hr/>
@@ -37,15 +42,15 @@ class Register extends Component {
                 <h1>~ Register ~</h1>
 
                 <form>
-                    <input name="name" value={this.state.name} placeholder="first and last name" onChange={this.handleInput}/><br/>
-                    <input name="username" value={this.state.username} placeholder="username" onChange={this.handleInput}/><br/>
-                    <input name="password" value={this.state.password} placeholder="password" onChange={this.handleInput}/><br/>
-                    <input name="email" value={this.state.email} placeholder="abc@mail.com" onChange={this.handleInput}/><br/>
-                    <button onClick={this.handleSubmit}>Register</button>
+                    <input type="text" name="name" placeholder="first and last name" onChange={this.handleInput}/><br/>
+                    <input type="text" name="username" placeholder="username" onChange={this.handleInput}/><br/>
+                    <input type="password" name="password" placeholder="password" onChange={this.handleInput}/><br/>
+                    <input type="text" name="email" placeholder="abc@mail.com" onChange={this.handleInput}/><br/>
 
-                <h2>Color Palette: </h2>
-                <h3>Spring: Light</h3>
-                <div className="colors">
+                <h2>Pick Your Palette: </h2>
+
+                <div onClick={this.getPaletteId} id='1' className="colors">
+                    <h3 style={{marginRight: '70%'}}>Spring: Light</h3>
                     <span style={{background: '#5DADEC'}}>.  .  .</span>
                     <span style={{background: '#A8E4A0'}}>.  .  .</span>
                     <span style={{background: '#F78FA7'}}>.  .  .</span>
@@ -55,7 +60,7 @@ class Register extends Component {
                 </div>
 
 
-                <div className="colors">
+                <div onClick={this.getPaletteId} id='2' className="colors">
                     <h3 style={{marginRight: '70%'}}>Spring: Soft</h3>
                     <span style={{background: '#1B03A3'}}>.  .  .</span>
                     <span style={{background: '#FFDF00'}}>.  .  .</span>
@@ -65,7 +70,7 @@ class Register extends Component {
                     <span style={{background: '#FF404C', marginBottom: 50}}>.  .  .</span>
                 </div>
 
-                <div className="colors">
+                <div onClick={this.getPaletteId} id='3' className="colors">
                     <h3 style={{marginRight: '70%'}}>Spring: Warm</h3>
                     <span style={{background: '#CA7E65'}}>.  .  .</span>
                     <span style={{background: '#CA5B53'}}>.  .  .</span>
@@ -75,7 +80,7 @@ class Register extends Component {
                     <span style={{background: '#CB9343', marginBottom: 50}}>.  .  .</span>
                 </div>
 
-                <div className="colors">
+                <div onClick={this.getPaletteId} id='4'className="colors">
                     <h3 style={{marginRight: '70%'}}>Summer: Light</h3>
                     <span style={{background: '#A1E9F2'}}>.  .  .</span>
                     <span style={{background: '#8170D0'}}>.  .  .</span>
@@ -85,7 +90,7 @@ class Register extends Component {
                     <span style={{background: '#B6C5CD', marginBottom: 50}}>.  .  .</span>
                 </div>
 
-                <div className="colors">
+                <div onClick={this.getPaletteId} id='5'className="colors">
                     <h3 style={{marginRight: '70%'}}>Summer: Soft</h3>
                     <span style={{background: '#704E8B'}}>.  .  .</span>
                     <span style={{background: '#3F7B54'}}>.  .  .</span>
@@ -95,7 +100,7 @@ class Register extends Component {
                     <span style={{background: '#b96693', marginBottom: 50}}>.  .  .</span>
                 </div>
 
-                <div className="colors">
+                <div onClick={this.getPaletteId} id='6'className="colors">
                     <h3 style={{marginRight: '70%'}}>Summer: Cool</h3>
                     <span style={{background: '#5A3D6D'}}>.  .  .</span>
                     <span style={{background: '#65C4BB'}}>.  .  .</span>
@@ -105,7 +110,7 @@ class Register extends Component {
                     <span style={{background: '#929293', marginBottom: 50}}>.  .  .</span>
                 </div>
 
-                <div className="colors">
+                <div onClick={this.getPaletteId} id='7' className="colors">
                     <h3 style={{marginRight: '70%'}}>Autumn: Deep</h3>
                     <span style={{background: '#DB943F'}}>.  .  .</span>
                     <span style={{background: '#933F3B'}}>.  .  .</span>
@@ -115,7 +120,7 @@ class Register extends Component {
                     <span style={{background: '#56614A', marginBottom: 50}}>.  .  .</span>
                 </div>
 
-                <div className="colors">
+                <div onClick={this.getPaletteId} id='8'className="colors">
                     <h3 style={{marginRight: '70%'}}>Autumn: Soft</h3>
                     <span style={{background: '#76607F'}}>.  .  .</span>
                     <span style={{background: '#B07870'}}>.  .  .</span>
@@ -125,7 +130,7 @@ class Register extends Component {
                     <span style={{background: '#C9AC99', marginBottom: 50}}>.  .  .</span>
                 </div>
 
-                <div className="colors">
+                <div onClick={this.getPaletteId} id='9'className="colors">
                     <h3 style={{marginRight: '70%'}}>Autumn: Warm</h3>
                     <span style={{background: '#913221'}}>.  .  .</span>
                     <span style={{background: '#405925'}}>.  .  .</span>
@@ -135,7 +140,7 @@ class Register extends Component {
                     <span style={{background: '#603311', marginBottom: 50}}>.  .  .</span>
                 </div>
 
-                <div className="colors">
+                <div onClick={this.getPaletteId} id='10' className="colors">
                     <h3 style={{marginRight: '70%'}}>Winter: Deep</h3>
                     <span style={{background: '#452E5F'}}>.  .  .</span>
                     <span style={{background: '#9B427E'}}>.  .  .</span>
@@ -145,7 +150,7 @@ class Register extends Component {
                     <span style={{background: '#454D4E', marginBottom: 50}}>.  .  .</span>
                 </div>
 
-                <div className="colors">
+                <div onClick={this.getPaletteId} id='11'className="colors">
                     <h3 style={{marginRight: '70%'}}>Winter: Soft</h3>
                     <span style={{background: '#D7D3F2'}}>.  .  .</span>
                     <span style={{background: '#3071A4'}}>.  .  .</span>
@@ -155,7 +160,7 @@ class Register extends Component {
                     <span style={{background: '#002908', marginBottom: 50}}>.  .  .</span>
                 </div>
 
-                <div className="colors">
+                <div onClick={this.getPaletteId} id='12'className="colors">
                     <h3 style={{marginRight: '70%'}}>Winter: Cool</h3>
                     <span style={{background: '#22488F'}}>.  .  .</span>
                     <span style={{background: '#417EA3'}}>.  .  .</span>
@@ -164,6 +169,8 @@ class Register extends Component {
                     <span style={{background: '#5E3247'}}>.  .  .</span>
                     <span style={{background: '#F2DAE3', marginBottom: 50}}>.  .  .</span>
                 </div>
+
+                <button onClick={this.handleSubmit}>Register</button>
 
                 </form>
 
