@@ -27,11 +27,11 @@ class Login extends Component {
 
     render() {
         const message = <p style={{padding: '0'}}>{this.props.sessionMessage}</p>
-        console.log(this.props.sessionMessage)
+        // console.log(this.props.sessionMessage)
         return (
             <div>
-                <h1>~ Log In ~</h1>
-                <span>{message}</span>
+                <h1 style={{textAlign: 'center'}}>~ Log In ~</h1>
+                <span style={{color: 'red', margin: '0 auto'}}>{message}</span>
                 <form>
                     <input type="text" placeholder="username" name="username" onChange={this.handleInput}/><br/>
                     <input type="password" placeholder="password" name="password" onChange={this.handleInput}/><br/>
