@@ -27,24 +27,40 @@ class Profile extends Component {
 				if (err) console.log(err);
 					// console.log(res)
 				const parsedResponse = JSON.parse(res.text);
-				// console.log(parsedResponse)
+				console.log(parsedResponse)
 				this.setState({
 					name: parsedResponse.name,
 					username: parsedResponse.username,
 					email: parsedResponse.email,
 					palette_name: parsedResponse.palette_name,
-					colors: parsedResponse.colors
+					colors: parsedResponse.colors,
+					looks: parsedResponse.looks
 				})
 			})
 	}
 
     render() {
-    	// console.log(this.state)
+    	console.log(this.state.looks)
+    	const looks = this.state.looks
+    	const lookList = this.state.looks.map((look, i) => {
+    		// const theLook = look[i]
+    		// console.log(i)
+    		// console.log(look)
+    		// console.log(look[i])
+    		for (let j = 0; j < look.length; j++){
+    			console.log(look[j])
+    			console.log(look[j].image)
+    			return <img key={j} src={look[j].image} id={look[j].id}/>
+    		}
+    		
+    	})
+
     	const colorList = this.state.colors.map((color, i) => {
     		return <div key={i}>
     			<h3>{color.color_name}</h3>
+
     		</div>
-    	});
+    	})
 
         return (        	  
             <div>
@@ -52,6 +68,7 @@ class Profile extends Component {
             	<h2>You are a {this.state.palette_name}</h2>
             	<div>
             		{colorList}
+            		{lookList}
             	</div>
             </div>
 
