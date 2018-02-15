@@ -30,6 +30,7 @@ class Login extends Component {
         // console.log(this.props.sessionMessage)
         return (
             <div>
+                <h1 id="logo">L👀kBook <span id="logo-color">Couleur</span><a>Register</a><a>Login</a></h1><hr/>
                 <h1>~ Log In ~</h1>
                 <span>{message}</span>
                 <form>

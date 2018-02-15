@@ -23,19 +23,18 @@ class App extends Component {
             session_message: ''
         }
     }
-
     goHome = () => {
         this.setState({
             show_reg: false,
             show_login: false
         })
-    }
+    };
 
     showRegister = () => {
         this.setState({ 
             show_reg: true,
             show_login: false })
-    }
+    };
 
     createUser = (formData) => {
         // console.log(formData);
@@ -54,13 +53,13 @@ class App extends Component {
                 })
 
             })
-    }
+    };
 
     showLogin = () => {
         this.setState({
             show_reg: false, 
             show_login: true })
-    }
+    };
 
     loginUser = (foundUser) => {
         request
@@ -88,31 +87,31 @@ class App extends Component {
 
                 
             })
-    }
+    };
 
     backToProfile = () => {
         this.setState({
             show_profile: true,
             show_edit: false
         })
-    }
+    };
 
     showEditor = () => {
       this.setState({
         show_profile: false,
         show_edit: true
       })
-    }
+    };
 
     updateUser = (updatedUser) => {
-        console.log(updatedUser)
-        const id = updatedUser.id
+        console.log(updatedUser);
+        const id = updatedUser.id;
         request
          .put("http://localhost:9292/users/" + id)
          .send(updatedUser)
          .end((err, res) => {
-            if (err) console.log(err)
-                console.log(res)
+            if (err) console.log(err);
+                console.log(res);
             const parsedResponse = JSON.parse(res.text)
                // needs to update editor to be hidden
                this.setState({
@@ -120,15 +119,15 @@ class App extends Component {
                 show_edit: false
                })
          })
-    }
+    };
 
    deleteUser = (userId) => {
     console.log(userId)
         request
             .delete("http://localhost:9292/users/" + userId)
             .end((err, res) => {
-                if(err) console.log(err)
-                    console.log(res)
+                if(err) console.log(err);
+                    console.log(res);
                 this.setState({
                     show_reg: false,
                     show_login: false,
@@ -136,49 +135,63 @@ class App extends Component {
                     show_edit: false
                 })
             })
-   }
+   };
 
    showNewLook = () => {
     this.setState({
         show_new_look: true,
         show_profile: false
     })
-   }
+   };
     
     render() {
         return (
             <div>
-                <header>    
-                    <link href="https://fonts.googleapis.com/css?family=Londrina+Outline|Londrina+Shadow|Londrina+Solid|Marcellus|Londrina+Sketch" rel="stylesheet"/>
-                        <a onClick={this.goHome}><h1 id="logo" style={{width: '50%', margin: '2%'}}>L👀kBook <span id="logo-color">Couleur</span></h1></a>
-                        
-                        {this.state.show_profile || this.state.show_edit || this.state.show_new_look === true ?  
-                            <nav>
-                                <a>Search</a>
-                                <a onClick={this.showNewLook}>Add New Look </a> 
-                                {this.state.show_edit || this.state.show_new_look === true ? <a onClick={this.backToProfile}>Back to Profile</a> : <a onClick={this.showEditor}>Edit Profile</a> }
-                                </nav> : 
-                            <nav>
-                                <a onClick={this.showRegister}>Register</a>
-                                <a onClick={this.showLogin}>Login</a>
-                            </nav>}   
-                    
+                <header>
+                    <link href="https://fonts.googleapis.com/css?family=Londrina+Outline|Londrina+Shadow|Londrina+Solid|Marcellus|Londrina+Sketch"
+                        rel="stylesheet"/>
+                    <a onClick={this.goHome}><h1 id="logo" style={{width: '50%', margin: '2%'}}>L👀kBook <span
+                        id="logo-color">Couleur</span></h1></a>
+
+                    {this.state.show_profile || this.state.show_edit || this.state.show_new_look === true ?
+                        <nav>
+                            <a>Search</a>
+                            <a onClick={this.showNewLook}>Add New Look </a>
+                            {this.state.show_edit || this.state.show_new_look === true ?
+                                <a onClick={this.backToProfile}>Back to Profile</a> :
+                                <a onClick={this.showEditor}>Edit Profile</a>}
+                        </nav> :
+                        <nav>
+                            <a onClick={this.showRegister}>Register</a>
+                            <a onClick={this.showLogin}>Login</a>
+                        </nav>}
+
                 </header>
+
                 <main>
-                { this.state.show_reg || this.state.show_login || this.state.show_profile || this.state.show_edit || this.state.show_new_look === true ? null : <div>
-                    <h4>WELCOME</h4>
-                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.</p>
-                </div>}
+                    {this.state.show_reg || this.state.show_login || this.state.show_profile || this.state.show_edit || this.state.show_new_look === true ? null :
+                        <div>
+                            <h4>WELCOME</h4>
+                            <p>It is a long established fact that a reader will be distracted by the readable content of
+                                a page when looking at its layout. The point of using Lorem Ipsum is that it has a
+                                more-or-less normal distribution of letters, as opposed to using 'Content here, content
+                                here', making it look like readable English. Many desktop publishing packages and web
+                                page editors now use Lorem Ipsum as their default model text, and a search for 'lorem
+                                ipsum' will uncover many web sites still in their infancy.</p>
+                        </div>}
 
-                { this.state.show_reg === false ? null : <Register createUser={this.createUser} />}
-                { this.state.show_login === false ? null : <Login sessionMessage={this.state.session_message} loginUser={this.loginUser} showRegister={this.showRegister}/>}
-                { this.state.show_profile === false ? null : <Profile userId={this.state.id} paletteId ={this.state.palette_id}/>}
-                { this.state.show_edit === false ? null : <Edit userId={this.state.id} deleteUser={this.deleteUser} updateUser={this.updateUser}/>}
-
-                { this.state.show_new_look === false ? null : <NewLook />}
+                    {this.state.show_reg === false ? null : <Register createUser={this.createUser}/>}
+                    {this.state.show_login === false ? null :
+                        <Login sessionMessage={this.state.session_message} loginUser={this.loginUser}
+                               showRegister={this.showRegister}/>}
+                    {this.state.show_profile === false ? null :
+                        <Profile userId={this.state.id} paletteId={this.state.palette_id}/>}
+                    {this.state.show_edit === false ? null :
+                        <Edit userId={this.state.id} deleteUser={this.deleteUser} updateUser={this.updateUser}/>}
+                    {this.state.show_new_look === false ? null : <NewLook/>}
 
                 </main>
-                
+
             </div>
         );
     }

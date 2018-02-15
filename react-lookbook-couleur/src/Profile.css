@@ -1,0 +1,33 @@
+h1{
+    text-align: left;
+}
+span{
+    border-radius: 50%;
+    font-size: 5pt;
+    color: transparent;
+    padding: 5px;
+}
+#logo{
+    font-family: 'Londrina Shadow', cursive;
+    text-align: left;
+    margin-left: 2%;
+    word-spacing: .2em;
+    letter-spacing: .1em;
+    font-size: 30pt;
+}
+.container{
+    display: flex;
+    flex-grow: 2;
+    width: 80vw;
+    margin: 10px;
+}
+.item1{
+    order:1;
+    width: 20vw;
+    height: 20vh;
+}
+.item2{
+    order:2;
+    width: 30vw;
+    height: 30vh;
+}

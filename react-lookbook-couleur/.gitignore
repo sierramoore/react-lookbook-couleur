@@ -24,3 +24,9 @@ yarn-error.log*
 ../.DS_Store
 ../.idea/
 ./
+.idea/inspectionProfiles/
+.idea/misc.xml
+.idea/modules.xml
+.idea/sinatra-lookbook-couleur.iml
+.idea/vcs.xml
+.idea/workspace.xml

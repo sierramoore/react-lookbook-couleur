@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import './Profile.css'
 import request from 'superagent';
 
 
 class Profile extends Component {
 	constructor(props) {
-		super(props)
+		super(props);
 
 		this.state = {
 			id: this.props.userId,
@@ -17,16 +18,15 @@ class Profile extends Component {
       looks: []
 		}
 	}
-
 	componentDidMount() {
-		const id = this.state.id
-		console.log(id)
+		const id = this.state.id;
+		console.log(id);
 		request
 			.get("http://localhost:9292/users/" + id)
 			.end((err, res) => {
-				if (err) console.log(err)
+				if (err) console.log(err);
 					// console.log(res)
-				const parsedResponse = JSON.parse(res.text)
+				const parsedResponse = JSON.parse(res.text);
 				// console.log(parsedResponse)
 				this.setState({
 					name: parsedResponse.name,
@@ -44,7 +44,7 @@ class Profile extends Component {
     		return <div key={i}>
     			<h3>{color.color_name}</h3>
     		</div>
-    	})
+    	});
 
         return (        	  
             <div>

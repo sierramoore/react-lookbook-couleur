@@ -21,11 +21,11 @@ class Register extends Component {
     };
 
     getPaletteId = (e) => {
-        console.log(e.currentTarget.id)
-        const paletteId = parseInt(e.currentTarget.id, 10)
-        this.setState({palette_id: paletteId})
+        console.log(e.currentTarget.id);
+        const paletteId = parseInt(e.currentTarget.id, 10);
+        this.setState({palette_id: paletteId});
         console.log(this.state)
-    }
+    };
 
     handleInput = (e) =>{
         // console.log(e.currentTarget.value);
@@ -35,6 +35,10 @@ class Register extends Component {
     render() {
         return (
             <div>
+                <h1 id="logo">L👀kBook <span id="logo-color">Couleur</span><a>Register</a><a>Login</a></h1><hr/>
+                <h4>WELCOME</h4>
+                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.</p>
+
                 <h1>~ Register ~</h1>
 
                 <form>
@@ -44,7 +48,7 @@ class Register extends Component {
                     <input type="text" name="email" placeholder="abc@mail.com" onChange={this.handleInput}/><br/>
 
                 <h2>Pick Your Palette: </h2>
-                
+
                 <div onClick={this.getPaletteId} id='1' className="colors">
                     <h3 style={{marginRight: '70%'}}>Spring: Light</h3>
                     <span style={{background: '#5DADEC'}}>.  .  .</span>
