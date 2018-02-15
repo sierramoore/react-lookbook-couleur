@@ -5,6 +5,14 @@ body{
     background: powderblue;
     /*margin-left: 6%;*/
 }
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    background-color: whitesmoke;
+    padding: 2%;
+}
+
 input{
     border-bottom: 2px solid black;
     border-top: none;
@@ -24,9 +32,11 @@ input:focus, input[type=text]:focus{
 }
 a{
     font-family: 'Marcellus', serif;
-    font-size: 12pt;
-    margin: 12%;
-    text-decoration: underline;
+    font-size: 14pt;
+    margin: auto;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
 }
 .heading a{
     text-decoration: none;
@@ -42,6 +52,9 @@ p{
     font-size: 18pt;
     padding-bottom: 10%;
 }
+img {
+    height: 100px;
+}
 button{
     font-size: 12pt;
     width: 150px;
@@ -53,6 +66,7 @@ button:hover{
     font-size: 12pt;
     background: plum;
     border-radius: 15px;
+    cursor: pointer;
 }
 h1{
     font-family: 'Londrina Shadow', cursive;
@@ -109,19 +123,31 @@ hr{
     flex-wrap: nowrap;
 }
 
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0;
+}
+
+#greeting {
+    text-align: center;
+}
+
 #logo{
     font-family: 'Londrina Shadow', cursive;
     text-align: left;
     /*margin-left: 2%;*/
     word-spacing: .2em;
     letter-spacing: .1em;
-    font-size: 30pt;
     text-decoration: transparent;
+    font-size: 50px;
 }
 #logo-color{
     font-family: 'Londrina Solid', cursive;
     color: plum;
-    font-size: 30pt;
+    font-size: 50px;
 }
 footer{
     position: fixed;

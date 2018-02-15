@@ -48,7 +48,7 @@ class Profile extends Component {
 
         return (        	  
             <div>
-            	<h1>Hi, {this.state.name}</h1>
+            	<h1 id="greeting">Hi, {this.state.name}</h1>
             	<h2>You are a {this.state.palette_name}</h2>
             	<div>
             		{colorList}
