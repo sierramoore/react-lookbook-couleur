@@ -94,7 +94,8 @@ class App extends Component {
     backToProfile = () => {
         this.setState({
             show_profile: true,
-            show_edit: false
+            show_edit: false,
+            show_new_look: false
         })
     }
 

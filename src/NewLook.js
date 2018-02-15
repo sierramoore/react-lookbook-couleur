@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
 import cheerio from 'cheerio';
+import request from 'request';
+const req = require('./scraper')
 
 class NewLook extends Component {
 	scrapeImages = (e) => {
 		e.preventDefault()
 		const link = e.currentTarget.previousSibling.value
-		console.log(link, typeof link)
 
-		const $ = cheerio.load(link)
-		console.log($)
-		console.log('--------------------------------------')
-		const arrayOfImg = $('img')
-		console.log(arrayOfImg)
+		console.log(link, typeof link, "----------------------------")
+
+		// Make a post route to the express app with the link
+
+		// then the express will scrape the data, and clean it
+		// then responsed with the array of images
+
 	}
 	render() {
 		return (
