@@ -165,10 +165,11 @@ class Register extends Component {
                     <span style={{background: '#5E3247'}}>.  .  .</span>
                     <span style={{background: '#F2DAE3', marginBottom: 50}}>.  .  .</span>
                 </div>
-
-                <button onClick={this.handleSubmit}>Register</button>
-
+                    <br/>
+                    <button onClick={this.handleSubmit} style={{marginTop: 100, marginBottom: 100}}>Register</button>
                 </form>
+
+
 
             </div>
         );

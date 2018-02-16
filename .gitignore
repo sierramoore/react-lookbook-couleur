@@ -30,3 +30,5 @@ yarn-error.log*
 .idea/sinatra-lookbook-couleur.iml
 .idea/vcs.xml
 .idea/workspace.xml
+
+sinatra-lookbook-couleur

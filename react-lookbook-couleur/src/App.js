@@ -190,28 +190,31 @@ class App extends Component {
     render() {
         return (
             <div>
-                <header>    
+                <header id="heading">
                     <link href="https://fonts.googleapis.com/css?family=Londrina+Outline|Londrina+Shadow|Londrina+Solid|Marcellus|Londrina+Sketch" rel="stylesheet"/>
 
                         {this.state.show_profile || this.state.show_edit || this.state.show_new_look === true ?  
-                            <nav className="heading">
-                               <h1 onClick={this.goHome} id="logo" style={{width: '35%'}}>L👀kBook <span id="logo-color">Couleur</span></h1><hr/>
+                            <nav >
+                               <h1 onClick={this.goHome} id="logo" style={{width: '35%'}}>L👀kBook <span id="logo-color">Couleur</span></h1>
                                 <a>Search</a>
                                 <a onClick={this.showNewLook}>Add New Look </a> 
                                 {this.state.show_edit || this.state.show_new_look === true ? <a onClick={this.backToProfile}>Back to Profile</a> : <a onClick={this.showEditor}>Edit Profile</a> }
                                 { this.state.show_logout === false ? null : <a onClick={this.logoutUser}>Logout</a>}
-                                </nav> : 
-                            <nav className="heading">
-                                <a onClick={this.goHome}><h1 id="logo" style={{width: '35%'}}>L👀kBook <span id="logo-color">Couleur</span></h1></a><hr/>
+                                </nav> :
+                            <nav>
+                                <a onClick={this.goHome}><h1 id="logo" style={{width: '35%'}}>L👀kBook <span id="logo-color">Couleur</span></h1></a>
                                 <a onClick={this.showRegister}>Register</a>
                                 <a onClick={this.showLogin}>Login</a>
-                            </nav>}   
+
+                            </nav>}
                     
                 </header>
                 <main>
                 { this.state.show_reg || this.state.show_login || this.state.show_profile || this.state.show_edit || this.state.show_new_look === true ? null : <div>
                     <h4>WELCOME</h4>
-                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.</p>
+                    <p>This a website where a you are able to create an account and choose a collection of six colors.
+                        You can paste url's from other websites into a field and all the images will be extracted form that website and saved into
+                        the your profile page. You may also remove, edit, or add images as much as you like!</p>
                 </div>}
 
                 { this.state.show_reg === false ? null : <Register createUser={this.createUser} />}

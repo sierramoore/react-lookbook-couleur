@@ -9,8 +9,11 @@ body{
 nav {
     display: flex;
     justify-content: space-between;
-    background-color: whitesmoke;
-    padding: 2%;
+    padding-bottom: 1%;
+}
+.colors div{
+    text-align: center;
+    margin-left: 53%;
 }
 
 input{
@@ -38,10 +41,10 @@ a{
     text-decoration: none;
     cursor: pointer;
 }
-.heading a{
+a{
     text-decoration: none;
 }
-.heading a:hover{
+a:hover{
     color: plum;
 }
 p{
@@ -61,6 +64,7 @@ button{
     border-radius: 15px;
     margin: 15px;
     font-family: 'Marcellus', serif;
+    margin-right: 50%;
 }
 button:hover{
     font-size: 12pt;
@@ -142,15 +146,17 @@ hr{
     word-spacing: .2em;
     letter-spacing: .1em;
     text-decoration: transparent;
-    font-size: 50px;
+    font-size: 30px;
+    display: inline;
 }
 #logo-color{
     font-family: 'Londrina Solid', cursive;
     color: plum;
-    font-size: 50px;
+    font-size: 30px;
+    display: inline;
 }
-footer{
-    position: fixed;
-    text-align: center;
-    margin: 150px 0 20px 0;
+#heading header{
+    width: 100vw;
+    height: 10vh;
+    background: red;
 }
