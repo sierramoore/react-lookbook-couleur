@@ -25,7 +25,7 @@ class Profile extends Component {
 			.get("http://localhost:9292/users/" + id)
 			.end((err, res) => {
 				if (err) console.log(err);
-					// console.log(res)
+					console.log(res)
 				const parsedResponse = JSON.parse(res.text);
 				// console.log(parsedResponse)
 				this.setState({
