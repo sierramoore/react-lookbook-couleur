@@ -39,8 +39,8 @@ class Edit extends Component {
 	}
 
 	handleInput = (e) => {
-		console.log(e.currentTarget.name)
-		console.log(e.currentTarget.value)
+		// console.log(e.currentTarget.name)
+		// console.log(e.currentTarget.value)
 		this.setState({[e.currentTarget.name]: e.currentTarget.value})
 	}
 

@@ -18,6 +18,7 @@ class Register extends Component {
     handleSubmit = (e) =>{
         e.preventDefault();
         this.props.createUser(this.state);
+        console.log(this.state)
     };
 
     getPaletteId = (e) => {

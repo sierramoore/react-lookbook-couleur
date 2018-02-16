@@ -49,6 +49,11 @@ p{
 img {
     height: 150px;
 }
+
+img:hover {
+    border: 3px solid plum;
+}
+
 button{
     font-size: 12pt;
     width: 150px;
@@ -131,7 +136,9 @@ hr{
     padding: 2%;
     background-color: whitesmoke;
     border-radius: 20%;
+    margin: 1%;
 }
+
 
 #greeting {
     text-align: center;

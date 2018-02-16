@@ -43,7 +43,7 @@ class App extends Component {
     }
 
     createUser = (formData) => {
-        // console.log(formData);
+        console.log(formData);
         request
             .post("http://localhost:9292/users/newuser")
             .type('form')
@@ -54,6 +54,7 @@ class App extends Component {
                 const parsedUser = JSON.parse(createdUser.text)
                 console.log(parsedUser);
                 this.setState({
+                    id: parsedUser.id,
                     palette_id: parsedUser.palette_id,
                     show_reg: false,
                     show_logout: true,
@@ -147,7 +148,8 @@ class App extends Component {
                // needs to update editor to be hidden
                this.setState({
                 palette_id: parsedResponse.palette_id,
-                show_edit: false
+                show_edit: false,
+                show_profile: true
                })
          })
     }
