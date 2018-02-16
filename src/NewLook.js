@@ -62,8 +62,8 @@ class NewLook extends Component {
     // console.log(this.state)
 
     const colorId = parseInt(this.state.color_id, 10)
-    console.log(this.state.color_id)
-    console.log(colorId)
+    // console.log(this.state.color_id)
+    // console.log(colorId)
     const objToSend = {
 			link: this.state.link,
 			image_link: this.state.image_link,
@@ -103,7 +103,7 @@ class NewLook extends Component {
 						</select>
 					<br/>	
 					Add tags (please separate by commas):
-						<input type="text" name="tags" placeholder="ex. #littleblackdress" onChange={this.handleInput}/>
+						<input type="text" name="tags" placeholder="ex. littleblackdress" onChange={this.handleInput}/>
 					<br/>	
 					Pick image:
 						<div className="container">
