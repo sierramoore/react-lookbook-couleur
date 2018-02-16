@@ -16,6 +16,9 @@ class App extends Component {
             id: '',
             colors: [],
             palette_id: '',
+            color_id: '',
+            color_name: '',
+            looks: [],
             show_reg: false,
             show_login: false,
             show_logout: false,
@@ -215,7 +218,7 @@ class App extends Component {
 
                 { this.state.show_reg === false ? null : <Register createUser={this.createUser} />}
                 { this.state.show_login === false ? null : <Login sessionMessage={this.state.session_message} loginUser={this.loginUser} showRegister={this.showRegister}/>}
-                { this.state.show_profile === false ? null : <Profile userId={this.state.id} paletteId ={this.state.palette_id}/>}
+                { this.state.show_profile === false ? null : <Profile userId={this.state.id} paletteId ={this.state.palette_id} />}
                 { this.state.show_edit === false ? null : <Edit userId={this.state.id} deleteUser={this.deleteUser} updateUser={this.updateUser}/>}
 
                 { this.state.show_new_look === false ? null : <NewLook userColors={this.state.colors} createLook={this.createLook}/>}

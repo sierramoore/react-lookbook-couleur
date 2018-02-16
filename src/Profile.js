@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import './Profile.css'
+import './Profile.css';
+import Looks from './Looks'
 import request from 'superagent';
 
 
@@ -15,7 +16,9 @@ class Profile extends Component {
       palette_name: '',
       palette_id: this.props.paletteId,
       colors: [],
-      looks: []
+      color_id: '',
+      color_name: '',
+      looks: ''
 		}
 	}
 	componentDidMount() {
@@ -33,45 +36,66 @@ class Profile extends Component {
 					username: parsedResponse.username,
 					email: parsedResponse.email,
 					palette_name: parsedResponse.palette_name,
-					colors: parsedResponse.colors,
-					looks: parsedResponse.looks
+					colors: parsedResponse.colors
 				})
 			})
 	}
 
-    render() {
-    	console.log(this.state.looks)
-    	const looks = this.state.looks
-    	const lookList = this.state.looks.map((look, i) => {
-    		// const theLook = look[i]
-    		// console.log(i)
-    		// console.log(look)
-    		// console.log(look[i])
-    		for (let j = 0; j < look.length; j++){
-    			console.log(look[j])
-    			console.log(look[j].image)
-    			return <img key={j} src={look[j].image} id={look[j].id}/>
-    		}
-    		
-    	})
+	showLook = (e) => {
+		// console.log(e.currentTarget)
+		// console.log(e.currentTarget.id)
+		console.log(typeof this.state.looks)
+		const colorId = e.currentTarget.id
+		request
+      .get("http://localhost:9292/looks/color/" + colorId)
+      .end((err, res) => {
+        if (err) console.log(err)
+          // console.log(res)
+        const parsedResponse = JSON.parse(res.text)
+        console.log(parsedResponse, '<-------- this paresed response')
+        this.setState({
+          color_id: parsedResponse.color_id,
+          color_name: parsedResponse.color_name,
+          looks: parsedResponse.looks
+        })
+        console.log(this.state.looks)
+        console.log(typeof this.state.looks)
+      })
 
+	}
+
+	backToPalette = () => {
+		this.setState({
+			looks: ''
+		})
+	}
+
+  render() {
+  
     	const colorList = this.state.colors.map((color, i) => {
-    		return <div key={i}>
+    		return <div key={color.id} id={color.id} onClick={this.showLook}>
     			<h3>{color.color_name}</h3>
 
     		</div>
     	})
 
-        return (        	  
-            <div>
-            	<h1 id="greeting">Hi, {this.state.name}</h1>
-            	<h2>You are a {this.state.palette_name}</h2>
-            	<div>
-            		{colorList}
-            		{lookList}
+        return (
+        	<main>
+        	  { this.state.looks === '' ?  
+	        	  <div>
+	            	<h1 id="greeting">Hi, {this.state.name}</h1>
+	            	<h2>Your palette: {this.state.palette_name}</h2>
+	            	<div>
+	            		{colorList}
+	            	</div>
+	            </div> :
+	            <div>
+	            	<h1>{this.state.color_name}</h1>
+	            	<a onClick={this.backToPalette}>Back to your palette</a>
+            		<Looks colorName={this.state.color_name} lookList={this.state.looks}/>
             	</div>
-            </div>
-
+          	}	
+          </main>	
         );
     }
 }

@@ -47,7 +47,7 @@ p{
     padding-bottom: 10%;
 }
 img {
-    height: 100px;
+    height: 150px;
 }
 button{
     font-size: 12pt;
@@ -81,20 +81,21 @@ h2{
     color: #404040;
     word-spacing: .2em;
     letter-spacing: .1em;
-    text-align: left;
-    font-size: 30pt;
+    text-align: center;
+    font-size: 25px;
 }
 h3{
     font-family: 'Londrina Sketch', cursive;
     letter-spacing: .1em;
-    font-size: 25pt;
+    font-size: 35px;
     line-height: 10px;
-    text-align: left;
+    text-align: center;
 
 }
 
 h3:hover {
-  color: green;
+  color: plum;
+  cursor: pointer;
 }
 hr{
     border: 1px solid grey;
@@ -122,7 +123,14 @@ hr{
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-between;
-    margin: 0;
+    margin: 0 auto;
+}
+
+.look-view-img {
+    height: 200px;
+    padding: 2%;
+    background-color: whitesmoke;
+    border-radius: 20%;
 }
 
 #greeting {
