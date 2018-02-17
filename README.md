@@ -18,13 +18,11 @@ sinatra-cross-origin, and bycrpt (for password security), and various JavaScript
 - have a rating system for lookbooks, and a browse top rated lookbooks feature.
 
 ##### Wireframes
-![WireFrame 1](LookbookCouleurWireframe.jpg)
+![WireFrame 1](react-lookbook-couleur/images/LookbookCouleurWireframe.jpg)
 
-![WireFrame 2](LookbookCouleurWireframe2.jpg)
+![WireFrame 3](react-lookbook-couleur/images/lookbookcouleurwireframe3.jpg)
 
-![WireFrame 3](lookbookcouleurwireframe3.jpg)
-
-![WireFrame 4](lookbookcouleurwireframe4.jpg)
+![WireFrame 4](react-lookbook-couleur/images/lookbookcouleurwireframe4.jpg)
 
 
  
